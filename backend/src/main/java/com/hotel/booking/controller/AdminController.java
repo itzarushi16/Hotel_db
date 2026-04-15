@@ -21,6 +21,11 @@ public class AdminController {
     private final AdminService adminService;
 
     // --- Hotels ---
+    @GetMapping("/hotels")
+    public ResponseEntity<List<Hotel>> getAllHotels() {
+        return ResponseEntity.ok(adminService.getAllHotels());
+    }
+
     @PostMapping("/hotels")
     public ResponseEntity<Hotel> createHotel(@Valid @RequestBody HotelRequest req) {
         return new ResponseEntity<>(adminService.createHotel(req), HttpStatus.CREATED);

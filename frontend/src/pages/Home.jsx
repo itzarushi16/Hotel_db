@@ -27,8 +27,10 @@ const Home = () => {
   const fetchHotels = async (isSearch = false) => {
     setLoading(true);
     try {
+      let endpoint = '/hotels';
       let queryParams = {};
       if (isSearch) {
+        endpoint = '/hotels/advanced-search';
         if (params.location) queryParams.location = params.location;
         if (params.checkIn) queryParams.checkIn = params.checkIn;
         if (params.checkOut) queryParams.checkOut = params.checkOut;
@@ -39,7 +41,7 @@ const Home = () => {
         }
       }
 
-      const response = await api.get('/hotels/advanced-search', { params: queryParams });
+      const response = await api.get(endpoint, { params: queryParams });
       setHotels(response.data);
     } catch (error) {
       console.error("Error fetching hotels:", error);

@@ -23,6 +23,10 @@ public class AdminService {
     private final PromotionRepository promotionRepository;
 
     // --- Hotel CRUD ---
+    public List<Hotel> getAllHotels() {
+        return hotelRepository.findAll();
+    }
+
     @Transactional
     public Hotel createHotel(HotelRequest req) {
         Hotel hotel = Hotel.builder()
